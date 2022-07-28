@@ -1,5 +1,5 @@
-import produtores from '../mocks/produtores'
-import topo from "../mocks/topo"
+import produtores from "../mocks/produtores";
+import topo from "../mocks/topo";
 
 export const carregaProdutores = () => {
     return produtores;

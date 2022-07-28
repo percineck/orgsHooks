@@ -1,34 +1,56 @@
 import React from 'react';
-import { Text, View, Image, StyleSheet } from 'react-native';
-import Logo from '../../../assets/logo.png';
+import { View, Text, Image, StyleSheet } from 'react-native';
 
-export default function Topo() {
-    return <View style={estilos.topo}>
-        <Image source={Logo} style={estilos.imagem} />
-        <Text style={estilos.boasVindas}> Olá, Luis </Text>
-        <Text style={estilos.legenda}> Encontre os melhores produtores </Text>
-    </View>
-    
+import { carregaTopo } from '../../../servicos/carregaDados';
+import logo from '../../../assets/logo.png';
+
+class Topo extends React.Component {
+    state = {
+        topo: {
+            boasVindas: '',
+            legenda: '',
+        }
+    }
+
+    atualizaTopo() {
+        const retorno = carregaTopo();
+        this.setState({ topo: retorno });
+    }
+
+    componentDidMount() {
+        this.atualizaTopo();
+    }
+
+    render() {
+        return <View style={estilos.topo}>
+            <Image source={logo} style={estilos.imagem} />
+            <Text style={estilos.boasVindas}>{ this.state.topo.boasVindas }</Text>
+            <Text style={estilos.legenda}>{ this.state.topo.legenda }</Text>
+        </View>
+    }
 }
 
 const estilos = StyleSheet.create({
     topo: {
-        backgroundColor: "#F6F6F6",
-        padding: 16
+        backgroundColor: '#F6F6F6',
+        padding: 16,
     },
-    imagem:{
+    imagem: {
         width: 70,
-        height: 28
+        height: 28,
     },
-    boasVindas:{
+    boasVindas: {
         marginTop: 24,
         fontSize: 26,
         lineHeight: 42,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        color: '#464646'
     },
     legenda: {
         fontSize: 16,
-        lineHeight: 26
+        lineHeight: 26,
+        color: '#A3A3A3',
     }
+});
 
-})
+export default Topo;

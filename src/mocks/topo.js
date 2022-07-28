@@ -1,6 +1,6 @@
 const topo = {
-    boasVindas: "Olá, Luis",
-    legenda: "Encontre os melhores produtores"
+    boasVindas: "Olá Natalia",
+    legenda: "Encontre os melhores produtores",
 };
 
 export default topo;
